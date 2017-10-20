@@ -25,9 +25,28 @@ public class SerialComm {
 		
 		debug = false; // Default is to NOT be in debug mode
 	}
+	
+	
 		
 	// TODO: Add writeByte() method that you created in Studio 5
-	// TODO: Add available() and readByte() that you created in Studio 6
+	public byte readByte() throws SerialPortException{
+		byte[] bytesIn = port.readBytes();
+		byte result = bytesIn[0];
+		return result;	
+	}
 	
+	// TODO: Add available() and readByte() that you created in Studio 6
+	public boolean available(){
+		try {
+			if(port.getInputBufferBytesCount() > 0)
+			{
+				return true;
+			}
+		} catch (SerialPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 }
