@@ -1,7 +1,6 @@
 package assignment6;
 
-import java.util.Scanner;
-
+import assignment6.SerialComm;
 import jssc.SerialPortException;
 
 
@@ -11,15 +10,19 @@ public class MorseCodeToPC {
 		SerialComm myPort;
 		try {
 			myPort = new SerialComm("/dev/cu.usbserial-DN02BGGE");
-			Scanner sc = new Scanner(System.in);
-			while(myPort.available())
+			while(true)
 			{
-				try {
-					myPort.readByte();
-				} catch (SerialPortException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(myPort.available())
+				{
+					byte character = myPort.readByte();
+					if(character != 35){
+						System.out.println((char)character);
+					}
+					else{
+						System.out.println();
+					}
 				}
+				
 			}
 		} catch (SerialPortException e1) {
 			// TODO Auto-generated catch block
