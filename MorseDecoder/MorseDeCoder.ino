@@ -171,7 +171,7 @@ void loop() {
   //check for invalid code string
   if(code.length() > 6)
   {
-    wordStr = "";
+    code = "";
     Serial.println("#Code too long to be valid! Dropping all!#");
   }
 
